@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./Pomodoro.css"
 
 function Pomodoro() {
   // State variables for timer settings
@@ -48,7 +49,7 @@ function Pomodoro() {
         }
       }, 1000);
     } else {
-      clearInterveral(timerInterval);
+      clearInterval(timerInterval);
     }
     return () => clearInterval(timerInterval);
   }, [isRunning, timerMinutes, timerSeconds]);
