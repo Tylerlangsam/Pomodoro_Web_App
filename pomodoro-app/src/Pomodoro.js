@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Pomodoro.css"
+import "./Pomodoro.css";
 
 function Pomodoro() {
   // State variables for timer settings
@@ -26,6 +26,16 @@ function Pomodoro() {
     setIsRunning(false);
     setTimerMinutes(workTime);
     setTimerSeconds(0);
+  };
+  // Function to update work time
+  const updateWorkTime = (newTime) => {
+    setWorkTime(newTime);
+    resetTimer(); // Reset the timer when work time changes
+  };
+  // Function to update break time
+  const updateBreakTime = (newTime) => {
+    setBreakTime(newTime);
+    resetTimer(); // Reset the timer when break time changes
   };
 
   // Use the useEffect hook to update the timer every second
@@ -60,10 +70,30 @@ function Pomodoro() {
       {/* Display timer settings (work time, break time) */}
       <div className="timer-settings">
         <div className="work-time">
-          <span>Work Time:</span> {workTime} minutes
+          <h3>Work Time</h3>
+          <span>Adjust the duration of your work sessions:</span>
+          <input
+            type="number"
+            min="1"
+            max="60"
+            value={workTime}
+            onChange={(e) => updateWorkTime(parseInt(e.target.value))}
+          />
+          <br></br>
+          {workTime} minutes
         </div>
         <div className="break-time">
-          <span>Break Time:</span> {breakTime} minutes
+          <h3>Break Time</h3>
+          <span>Adjust the duration of your break sessions:</span>
+          <input
+            type="number"
+            min="1"
+            max="60"
+            value={breakTime}
+            onChange={(e) => updateBreakTime(parseInt(e.target.value))}
+          />
+          <br></br>
+          {breakTime} minutes
         </div>
       </div>
 
