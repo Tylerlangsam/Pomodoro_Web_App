@@ -74,7 +74,7 @@ function Pomodoro() {
           <h2 className="setting-title">Work Time</h2>
           <div className="setting-content">
             <span className="setting-label">Set the duration of your work sessions:</span>
-            {workTime} minutes<br></br>
+            <div className="time">{workTime} minutes</div>
             <h2 className="setting-title">Adjust Work Time</h2>
             <input
               type="number"
@@ -91,7 +91,7 @@ function Pomodoro() {
           <h2 className="setting-title">Break Time</h2>
           <div className="setting-content">
             <span className="setting-label">Set the duration of your break sessions:</span>
-            {breakTime} minutes<br></br>
+            <div className="time">{breakTime} minutes</div>
             <h2 className="setting-title">Adjust Break Time</h2>
             <input
               type="number"
