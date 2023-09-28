@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Pomodoro.css";
+import "./Pomodoro.scss";
 
 function Pomodoro() {
   // State variables for timer settings
@@ -67,51 +67,112 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      {/* Display timer settings (work time, break time) */}
+      <h1 className="app-title">Pomodoro Timer</h1>
       <div className="timer-settings">
-        <div className="work-time">
-          <h3>Work Time</h3>
-          <span>Adjust the duration of your work sessions:</span>
-          <input
-            type="number"
-            min="1"
-            max="60"
-            value={workTime}
-            onChange={(e) => updateWorkTime(parseInt(e.target.value))}
-          />
-          <br></br>
-          {workTime} minutes
+        {/* Work Time */}
+        <div className="setting">
+          <h2 className="setting-title">Work Time</h2>
+          <div className="setting-content">
+            <span className="setting-label">Set the duration of your work sessions:</span>
+            {workTime} minutes<br></br>
+            <h2 className="setting-title">Adjust Work Time</h2>
+            <input
+              type="number"
+              min="1"
+              max="60"
+              value={workTime}
+              onChange={(e) => updateWorkTime(parseInt(e.target.value))}
+            />
+          </div>
         </div>
-        <div className="break-time">
-          <h3>Break Time</h3>
-          <span>Adjust the duration of your break sessions:</span>
-          <input
-            type="number"
-            min="1"
-            max="60"
-            value={breakTime}
-            onChange={(e) => updateBreakTime(parseInt(e.target.value))}
-          />
-          <br></br>
-          {breakTime} minutes
+
+        {/* Break Time */}
+        <div className="setting">
+          <h2 className="setting-title">Break Time</h2>
+          <div className="setting-content">
+            <span className="setting-label">Set the duration of your break sessions:</span>
+            {breakTime} minutes<br></br>
+            <h2 className="setting-title">Adjust Break Time</h2>
+            <input
+              type="number"
+              min="1"
+              max="60"
+              value={breakTime}
+              onChange={(e) => updateBreakTime(parseInt(e.target.value))}
+            />
+          </div>
         </div>
       </div>
-
-      {/* Display the current time left on the timer */}
-      <div className="timer">
-        {timerMinutes < 10 ? "0" + timerMinutes : timerMinutes}:
-        {timerSeconds < 10 ? "0" + timerSeconds : timerSeconds}
+      <div className="timer-display">
+        <div className={`timer ${isRunning ? "running" : ""}`}>
+          <span className="timer-text">
+            {timerMinutes < 10 ? "0" + timerMinutes : timerMinutes}:
+            {timerSeconds < 10 ? "0" + timerSeconds : timerSeconds}
+          </span>
+        </div>
       </div>
-
-      {/* Start, pause, and reset buttons */}
       <div className="timer-controls">
-        <button onClick={startTimer} disabled={isRunning}>
+        <button className="control-button start-button" onClick={startTimer} disabled={isRunning}>
           Start
         </button>
-        <button onClick={pauseTimer} disabled={!isRunning}>
+        <button className="control-button pause-button" onClick={pauseTimer} disabled={!isRunning}>
           Pause
         </button>
-        <button onClick={resetTimer}>Reset</button>
+        <button className="control-button reset-button" onClick={resetTimer}>
+          Reset
+        </button>
+      </div>
+      <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
       </div>
     </div>
   );

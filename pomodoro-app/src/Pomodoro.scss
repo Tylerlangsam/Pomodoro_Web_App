@@ -1,0 +1,204 @@
+body {
+  background: #1a1e23;
+  margin: 0;
+}
+
+$bubble-count: 50;
+$sway-type: "sway-left-to-right", "sway-right-to-left";
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+@function sample($list) {
+  @return nth($list, random(length($list)));
+}
+
+.bubbles {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  left: var(--bubble-left-offset);
+  bottom: -75%;
+  display: block;
+  width: var(--bubble-radius);
+  height: var(--bubble-radius);
+  border-radius: 50%;
+  animation: float-up var(--bubble-float-duration) var(--bubble-float-delay) ease-in infinite;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(183, 94%, 76%, 0.3);
+    border-radius: inherit;
+    animation: var(--bubble-sway-type) var(--bubble-sway-duration) var(--bubble-sway-delay) ease-in-out alternate infinite;
+  }
+
+  @for $i from 0 through $bubble-count {
+    &:nth-child(#{$i}) {
+      --bubble-left-offset: #{random_range(0vw, 100vw)};
+      --bubble-radius: #{random_range(1vw, 10vw)};
+      --bubble-float-duration: #{random_range(6s, 12s)};
+      --bubble-sway-duration: #{random_range(4s, 6s)};
+      --bubble-float-delay: #{random_range(0s, 4s)};
+      --bubble-sway-delay: #{random_range(0s, 4s)};
+      --bubble-sway-type: #{sample($sway-type)};
+    }
+  }
+}
+
+@keyframes float-up {
+  to {
+    transform: translateY(-175vh);
+  }
+}
+
+@keyframes sway-left-to-right {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sway-right-to-left {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.pomodoro {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.app-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4ca5af; /* blue color for the title */
+}
+
+/* Timer settings styles */
+.timer-settings {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.setting {
+  background-color: #fff;
+  border: 2px solid #4ca5af; /* blue border for settings */
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 10px;
+}
+
+.setting-title {
+  font-size: 18px;
+  color: #4ca5af; /* blue color for setting titles */
+}
+
+.setting-label {
+  font-size: 14px;
+  color: #777; /* Gray color for labels */
+}
+
+/* Timer display styles */
+.timer-display {
+  margin-bottom: 20px;
+}
+
+.timer {
+  font-size: 48px;
+  font-weight: bold;
+  background-color: #4ca5af; /* Blue background for timer */
+  color: #fff; /* White text color for timer */
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.timer.running {
+  background-color: #38019d; /* Dark Blue background when running */
+}
+
+.timer-text {
+  display: inline-block;
+}
+
+/* Timer controls styles */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.control-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.start-button {
+  background-color: #4ca5af; /* Blue color for Start button */
+  color: #fff;
+}
+
+.start-button:disabled {
+  background-color: #ccc; /* Grayed out when disabled */
+  cursor: not-allowed;
+}
+
+.pause-button {
+  background-color: #38019d; /* Dark Blue color for Pause button */
+  color: #fff;
+}
+
+.pause-button:disabled {
+  background-color: #ccc; /* Grayed out when disabled */
+  cursor: not-allowed;
+}
+
+.reset-button {
+  background-color: #2196f3; /* Blue color for Reset button */
+  color: #fff;
+}
+
+.reset-button:hover {
+  background-color: #1976d2; /* Darker blue on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .timer-settings {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .setting {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+}
