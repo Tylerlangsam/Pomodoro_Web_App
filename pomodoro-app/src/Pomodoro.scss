@@ -17,10 +17,13 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .bubbles {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  position: fixed; /* Fixed position to remain in the background */
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover the entire viewport width */
+  height: 100vh; /* Cover the entire viewport height */
   overflow: hidden;
+  z-index: -1; /* Set a lower z-index to render behind the app content */
 }
 
 .bubble {
@@ -87,6 +90,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 .pomodoro {
   text-align: center;
   font-family: 'Arial', sans-serif;
+  z-index: 1;
 }
 
 .app-title {
