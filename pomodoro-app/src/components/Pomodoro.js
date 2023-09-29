@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
+import TimerStart from './../TimerStart.mp3'
+import ResetAudio from './../ResetAudio.mp3'
 import "./Pomodoro.scss";
 
 function Pomodoro() {
   // State variables for timer settings
   const [workTime, setWorkTime] = useState(25);
   const [breakTime, setBreakTime] = useState(5);
+
+  //State variable for audio
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  //State variable for reset audio
+  const [isResetAudioPlaying, setIsResetAudioPlaying] = useState(false)
 
   // State variable for the current time left on the timer
   const [timerMinutes, setTimerMinutes] = useState(workTime);
@@ -17,16 +25,20 @@ function Pomodoro() {
   // Function to start the timer
   const startTimer = () => {
     setIsRunning(true);
+    setIsAudioPlaying(true);
   };
   // Function to pause the timer
   const pauseTimer = () => {
     setIsRunning(false);
+    setIsAudioPlaying(false)
   };
   // Function to reset the timer
   const resetTimer = () => {
     setIsRunning(false);
     setTimerMinutes(workTime);
     setTimerSeconds(0);
+    setIsResetAudioPlaying(true);
+    setIsAudioPlaying(false);
   };
   // Function to update work time
   const updateWorkTime = (newTime) => {
@@ -69,6 +81,15 @@ function Pomodoro() {
   return (
     <div className="pomodoro">
       <NavBar />
+      {isAudioPlaying && <audio src={TimerStart} loop autoPlay />}
+      {isResetAudioPlaying && (
+        <audio
+          key={ResetAudio}
+          src={ResetAudio}
+          autoPlay
+          onEnded={() => setIsResetAudioPlaying(false)}
+        />
+      )}{" "}
       <div className="app-container">
         <div className="timer-settings">
           {/* Work Time */}
