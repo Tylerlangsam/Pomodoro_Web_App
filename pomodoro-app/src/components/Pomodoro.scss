@@ -94,7 +94,6 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
   z-index: 1;
 }
 
-
 /* Timer settings styles */
 .timer-settings {
   display: flex;
@@ -103,12 +102,11 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .setting {
-  background-color: #82c0c6;
-  border: 3px solid #4ca5af92; /* Blue border for settings */
+  background-color: rgba(76, 165, 175, 0.8);
+  border: 5px solid #4ca5af92;
   box-sizing: border-box;
   box-shadow: #000000;
   border-radius: 200px;
-  // padding: 20px;
   padding: 20px;
   margin: 0 10px;
 }
@@ -132,8 +130,8 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 .timer {
   font-size: 48px;
   font-weight: bold;
-  background-color: #4ca5af; /* Blue background for timer */
-  color: #fff; /* White text color for timer */
+  background-color: rgba(76, 165, 175, 0.8);
+
   padding: 10px 20px;
   border-radius: 10px;
   display: inline-block;
@@ -141,11 +139,11 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .timer.running {
-  background-color: #38019d; /* Dark Blue background when running */
+  background-color: #38019d;
 }
-
 .timer-text {
   display: inline-block;
+  color: white;
 }
 
 /* Timer controls styles */
@@ -168,38 +166,37 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .nav {
-  background-color:#2196f3;
+  background-color: #2196f3;
   height: max-content;
-;
 }
 
 .start-button {
-  background-color: #4ca5af; /* Blue color for Start button */
+  background-color: #4ca5af;
   color: #fff;
 }
 
 .start-button:disabled {
-  background-color: #ccc; /* Grayed out when disabled */
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
 .pause-button {
-  background-color: #38019d; /* Dark Blue color for Pause button */
+  background-color: #38019d;
   color: #fff;
 }
 
 .pause-button:disabled {
-  background-color: #ccc; /* Grayed out when disabled */
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
 .reset-button {
-  background-color: #2196f3; /* Blue color for Reset button */
+  background-color: #2196f3;
   color: #fff;
 }
 
 .reset-button:hover {
-  background-color: #1976d2; /* Darker blue on hover */
+  background-color: #1976d2;
 }
 
 /* Responsive styles for smaller screens */
@@ -236,21 +233,23 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 .nav-button {
   background-color: transparent;
+  font-weight: 600;
   color: white;
   border: none;
   margin-right: 10px;
   cursor: pointer;
   font-size: 16px;
+  text-decoration: none;
 }
 
 .nav-button:hover {
-  text-decoration: underline;
+  text-decoration: wavy;
 }
 
 .app-container {
-   display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  height: 100vh; 
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }

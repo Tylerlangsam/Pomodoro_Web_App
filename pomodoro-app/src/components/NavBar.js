@@ -6,7 +6,7 @@ function NavBar() {
     <nav className="navbar">
       <h1 className="app-title">Pomodoro Timer</h1>
       <div className="nav-links">
-        <Link to="" className="nav-link">
+        <Link to='' className="nav-button">
           Timer
         </Link>
       </div>
