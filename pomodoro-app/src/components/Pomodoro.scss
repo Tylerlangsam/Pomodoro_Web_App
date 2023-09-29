@@ -220,8 +220,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4ca5af;
-  opacity: .5;
+  background-color: rgba(76, 165, 175, 0.8);
   color: white;
   padding: 5px 20px;
 }
@@ -246,4 +245,12 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 .nav-button:hover {
   text-decoration: underline;
+}
+
+.app-container {
+   display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 100vh; 
 }

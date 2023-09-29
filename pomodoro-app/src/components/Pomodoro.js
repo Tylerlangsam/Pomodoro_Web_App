@@ -68,112 +68,117 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-< NavBar/>
-      <div className="timer-settings">
-        {/* Work Time */}
-        <div className="setting">
-          <h2 className="setting-title">Work Time</h2>
-          <div className="setting-content">
-            <span className="setting-label">Set the duration of your work sessions:</span>
-            <div className="time">{workTime} minutes</div>
-            <h2 className="setting-title">Adjust Work Time</h2>
-            <input
-              type="number"
-              min="1"
-              max="60"
-              value={workTime}
-              onChange={(e) => updateWorkTime(parseInt(e.target.value))}
-            />
+      <NavBar />
+      <div className="app-container">
+        <div className="timer-settings">
+          {/* Work Time */}
+          <div className="setting">
+            <h2 className="setting-title">Work Time</h2>
+            <div className="setting-content">
+              <span className="setting-label">Set the duration of your work sessions:</span>
+              <div className="time">{workTime} minutes</div>
+              <h2 className="setting-title">Adjust Work Time</h2>
+              <input
+                type="number"
+                min="1"
+                max="60"
+                value={workTime}
+                onChange={(e) => updateWorkTime(parseInt(e.target.value))}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Break Time */}
-        <div className="setting">
-          <h2 className="setting-title">Break Time</h2>
-          <div className="setting-content">
-            <span className="setting-label">Set the duration of your break sessions:</span>
-            <div className="time">{breakTime} minutes</div>
-            <h2 className="setting-title">Adjust Break Time</h2>
-            <input
-              type="number"
-              min="1"
-              max="60"
-              value={breakTime}
-              onChange={(e) => updateBreakTime(parseInt(e.target.value))}
-            />
+          {/* Break Time */}
+          <div className="setting">
+            <h2 className="setting-title">Break Time</h2>
+            <div className="setting-content">
+              <span className="setting-label">Set the duration of your break sessions:</span>
+              <div className="time">{breakTime} minutes</div>
+              <h2 className="setting-title">Adjust Break Time</h2>
+              <input
+                type="number"
+                min="1"
+                max="60"
+                value={breakTime}
+                onChange={(e) => updateBreakTime(parseInt(e.target.value))}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="timer-display">
-        <div className={`timer ${isRunning ? "running" : ""}`}>
-          <span className="timer-text">
-            {timerMinutes < 10 ? "0" + timerMinutes : timerMinutes}:
-            {timerSeconds < 10 ? "0" + timerSeconds : timerSeconds}
-          </span>
+        <div className="timer-display">
+          <div className={`timer ${isRunning ? "running" : ""}`}>
+            <span className="timer-text">
+              {timerMinutes < 10 ? "0" + timerMinutes : timerMinutes}:
+              {timerSeconds < 10 ? "0" + timerSeconds : timerSeconds}
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="timer-controls">
-        <button className="control-button start-button" onClick={startTimer} disabled={isRunning}>
-          Start
-        </button>
-        <button className="control-button pause-button" onClick={pauseTimer} disabled={!isRunning}>
-          Pause
-        </button>
-        <button className="control-button reset-button" onClick={resetTimer}>
-          Reset
-        </button>
-      </div>
-      <div class="bubbles">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+        <div className="timer-controls">
+          <button className="control-button start-button" onClick={startTimer} disabled={isRunning}>
+            Start
+          </button>
+          <button
+            className="control-button pause-button"
+            onClick={pauseTimer}
+            disabled={!isRunning}>
+            Pause
+          </button>
+          <button className="control-button reset-button" onClick={resetTimer}>
+            Reset
+          </button>
+        </div>
+        <div class="bubbles">
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+        </div>
       </div>
     </div>
   );
