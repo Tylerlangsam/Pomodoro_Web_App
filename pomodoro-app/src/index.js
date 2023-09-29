@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Pomodoro from './Pomodoro';
+import Pomodoro from './components/Pomodoro';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

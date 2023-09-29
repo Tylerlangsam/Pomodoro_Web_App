@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NavBar from "./NavBar";
 import "./Pomodoro.scss";
 
 function Pomodoro() {
@@ -67,7 +68,7 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <h1 className="app-title">Pomodoro Timer</h1>
+< NavBar/>
       <div className="timer-settings">
         {/* Work Time */}
         <div className="setting">
