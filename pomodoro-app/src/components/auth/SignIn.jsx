@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import NavBar from "../NavBar";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ const SignIn = () => {
   }
   return (
     <div className="sign-in-container">
+        <NavBar></NavBar>
       <form onSubmit={signIn}>
         <h1>Log In to your Account</h1>
         <input

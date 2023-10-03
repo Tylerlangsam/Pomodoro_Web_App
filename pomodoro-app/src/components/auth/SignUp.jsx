@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NavBar from "../NavBar";
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -15,6 +16,7 @@ const SignUp = () => {
   }
   return (
     <div className="sign-in-container">
+        <NavBar></NavBar>
       <form onSubmit={signUp}>
         <h1>Create Account</h1>
         <input
