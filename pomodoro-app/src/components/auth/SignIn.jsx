@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import NavBar from "../NavBar";
-import { useHistory } from "react-router-dom"; 
+import { Link, useHistory } from "react-router-dom"; 
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +40,9 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}></input>
         <button type="submit">Log In</button>
       </form>
+      <p>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 };
