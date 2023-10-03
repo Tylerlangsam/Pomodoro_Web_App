@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import NavBar from "../NavBar";
-import { Link, useHistory } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Redirect the user to the "/pomodoro" route
-        history.push("/pomodoro");
+        navigate("/pomodoro");
       })
       .catch((error) => {
         // Handle sign-in errors if needed
