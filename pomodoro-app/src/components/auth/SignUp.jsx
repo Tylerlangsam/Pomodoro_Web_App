@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set } from "firebase/database";
+import { db } from "../../firebase";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -12,8 +14,20 @@ const SignUp = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Redirect to "/pomodoro" on successful sign-up
-        navigate("/pomodoro");
+        // Get the UID of the signed-up user
+        const user = userCredential.user;
+        const uid = user.uid;
+
+        // Create a reference to the user's data in the database
+        const userRef = ref(db, `users/${uid}`);
+
+        // Set the UID in the database
+        set(userRef, {
+          uid: uid,
+        }).then(() => {
+          // Redirect to "/pomodoro" on successful sign-up
+          navigate("/pomodoro");
+        });
       })
       .catch((error) => {
         // Handle sign-up errors if needed

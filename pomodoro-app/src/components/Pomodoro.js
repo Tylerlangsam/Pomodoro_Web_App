@@ -3,6 +3,8 @@ import NavBar from "./NavBar";
 import TimerStart from './../TimerStart.mp3'
 import ResetAudio from './../ResetAudio.mp3'
 import "./Pomodoro.scss";
+import { ref, push, set, getDatabase } from "firebase/database";
+import { db } from "../firebase";
 
 function Pomodoro() {
   // State variables for timer settings
@@ -24,13 +26,44 @@ function Pomodoro() {
 
   // Function to start the timer
   const startTimer = () => {
+  if (!isRunning) {
     setIsRunning(true);
     setIsAudioPlaying(true);
+
+    // Capture the start time of the study session
+    if (timerMinutes === workTime && timerSeconds === 0) {
+      const startTime = new Date().getTime(); // Get the current timestamp
+      setStudySessionStartTime(startTime);
+    }
+  }
   };
   // Function to pause the timer
   const pauseTimer = () => {
     setIsRunning(false);
     setIsAudioPlaying(false)
+    if (studySessionStartTime) {
+      const endTime = new Date().getTime(); // Get the current timestamp
+
+      // Calculate the duration of the study session
+      const durationInSeconds = Math.floor((endTime - studySessionStartTime) / 1000);
+
+      // Save the study session to the database
+      const user = auth.currentUser;
+      if (user) {
+        const userUID = user.uid;
+        const userRef = ref(db, `users/${userUID}`);
+        const newSessionRef = push(child(userRef, "studySessions")); // Create a new session ID
+        set(newSessionRef, {
+          sessionType: "study",
+          startTime: studySessionStartTime,
+          endTime: endTime,
+          duration: durationInSeconds,
+        });
+      }
+
+      // Reset the start time
+      setStudySessionStartTime(null);
+    }
   };
   // Function to reset the timer
   const resetTimer = () => {
