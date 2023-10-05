@@ -3,6 +3,7 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import NavBar from "../NavBar";
 import { Link, useNavigate } from "react-router-dom"; 
+import { ref, set } from 'firebase/database';
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,8 @@ const SignIn = () => {
       .then((userCredential) => {
         // Redirect the user to the "/pomodoro" route
         navigate("/pomodoro");
+        const user = userCredential.user;
+        const userUID = user.uid;
       })
       .catch((error) => {
         // Handle sign-in errors if needed
