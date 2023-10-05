@@ -20,7 +20,7 @@ const SignIn = () => {
         const uid = user.uid;
 
         // Create a reference to the user's data in the database
-        const userRef = ref(database, `users/${uid}`);
+        const userRef = ref(db, `users/${uid}`);
 
         // Set the UID in the database
         set(userRef, {

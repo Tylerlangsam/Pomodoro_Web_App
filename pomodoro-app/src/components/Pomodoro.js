@@ -3,8 +3,8 @@ import NavBar from "./NavBar";
 import TimerStart from './../TimerStart.mp3'
 import ResetAudio from './../ResetAudio.mp3'
 import "./Pomodoro.scss";
-import { ref, push, set, getDatabase } from "firebase/database";
-import { db } from "../firebase";
+import { ref, push, set, child } from "firebase/database";
+import { db, auth } from "../firebase";
 
 function Pomodoro() {
   // State variables for timer settings
@@ -23,6 +23,8 @@ function Pomodoro() {
 
   // State variable to track whether the timer is running or paused
   const [isRunning, setIsRunning] = useState(false);
+
+  const [studySessionStartTime, setStudySessionStartTime] = useState(null);
 
   // Function to start the timer
   const startTimer = () => {
