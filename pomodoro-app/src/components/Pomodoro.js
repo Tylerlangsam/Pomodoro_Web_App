@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
-import TimerStart from './../TimerStart.mp3'
-import ResetAudio from './../ResetAudio.mp3'
+import TimerStart from "./../TimerStart.mp3";
+import ResetAudio from "./../ResetAudio.mp3";
 import "./Pomodoro.scss";
 import { ref, push, set, child } from "firebase/database";
 import { db, auth } from "../firebase";
@@ -15,7 +15,7 @@ function Pomodoro() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   //State variable for reset audio
-  const [isResetAudioPlaying, setIsResetAudioPlaying] = useState(false)
+  const [isResetAudioPlaying, setIsResetAudioPlaying] = useState(false);
 
   // State variable for the current time left on the timer
   const [timerMinutes, setTimerMinutes] = useState(workTime);
@@ -28,23 +28,23 @@ function Pomodoro() {
 
   // Function to start the timer
   const startTimer = () => {
-  if (!isRunning) {
-    setIsRunning(true);
-    setIsAudioPlaying(true);
+    if (!isRunning) {
+      setIsRunning(true);
+      setIsAudioPlaying(true);
 
-    // Capture the start time of the study session
-    if (timerMinutes === workTime && timerSeconds === 0) {
-      const startTime = new Date().getTime(); // Get the current timestamp
-      setStudySessionStartTime(startTime);
+      // Capture the start time of the study session
+      if (timerMinutes === workTime && timerSeconds === 0) {
+        const startTime = Math.floor(new Date().getTime() / 1000); // Get the current timestamp
+        setStudySessionStartTime(startTime);
+      }
     }
-  }
   };
   // Function to pause the timer
   const pauseTimer = () => {
     setIsRunning(false);
-    setIsAudioPlaying(false)
+    setIsAudioPlaying(false);
     if (studySessionStartTime) {
-      const endTime = new Date().getTime(); // Get the current timestamp
+      const endTime = Math.floor(new Date().getTime() / 1000); // Get the current timestamp in seconds
 
       // Calculate the duration of the study session
       const durationInSeconds = Math.floor((endTime - studySessionStartTime) / 1000);
