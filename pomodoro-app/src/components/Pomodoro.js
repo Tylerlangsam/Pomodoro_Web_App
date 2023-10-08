@@ -5,6 +5,9 @@ import ResetAudio from "./../ResetAudio.mp3";
 import "./Pomodoro.scss";
 import { ref, push, set, child } from "firebase/database";
 import { db, auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
+
 
 function Pomodoro() {
   // State variables for timer settings
@@ -25,6 +28,23 @@ function Pomodoro() {
   const [isRunning, setIsRunning] = useState(false);
 
   const [studySessionStartTime, setStudySessionStartTime] = useState(null);
+
+  const [userEmail, setUserEmail] = useState("");
+  useEffect(() => {
+    // Listen for changes in the user's authentication state
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, set the email
+        setUserEmail(user.email);
+      } else {
+        // User is signed out, reset the email
+        setUserEmail("");
+      }
+    });
+
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   // Function to start the timer
   const startTimer = () => {
@@ -182,7 +202,8 @@ function Pomodoro() {
           <button className="control-button reset-button" onClick={resetTimer}>
             Reset
           </button>
-        </div>
+        </div><br></br>
+        <div className="user-email">Signed in as: {userEmail}</div>
         <div className="bubbles">
           <div className="bubble"></div>
           <div className="bubble"></div>
