@@ -8,7 +8,7 @@ function NavBar({ user }) {
       <div className="nav-links">
         {user ? (
           <>
-            <Link to="/timer" className="nav-button">
+            <Link to="/pomodoro" className="nav-button">
               Timer
             </Link>
             <Link to="/stats" className="nav-button">
