@@ -29,6 +29,26 @@ function Pomodoro() {
 
   const [studySessionStartTime, setStudySessionStartTime] = useState(null);
 
+   const [user, setUser] = useState(null); // Initialize user state
+
+   // ...
+
+   useEffect(() => {
+     // Listen for changes in the user's authentication state
+     const unsubscribe = onAuthStateChanged(auth, (user) => {
+       if (user) {
+         // User is signed in, set the user object
+         setUser(user);
+       } else {
+         // User is signed out, reset the user object
+         setUser(null);
+       }
+     });
+
+     // Cleanup the listener when the component unmounts
+     return () => unsubscribe();
+   }, []);
+
   const [userEmail, setUserEmail] = useState("");
   useEffect(() => {
     // Listen for changes in the user's authentication state
@@ -135,7 +155,7 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <NavBar />
+      <NavBar user={user}/>
       {isAudioPlaying && <audio src={TimerStart} loop autoPlay />}
       {isResetAudioPlaying && (
         <audio

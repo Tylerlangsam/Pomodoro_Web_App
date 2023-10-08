@@ -10,7 +10,7 @@ function isAuthenticated(){
   return user!==null
 }
 function ProtectedRoute({ element }) {
-  return isAuthenticated() ? element : <Navigate to="/signin" />;
+  return isAuthenticated() ? element : <Navigate to="/" />;
 }
 
 

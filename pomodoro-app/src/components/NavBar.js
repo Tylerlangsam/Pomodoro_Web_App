@@ -20,8 +20,8 @@ function NavBar({ user }) {
             <Link to="/signup" className="nav-button">
               Sign Up
             </Link>
-            <Link to="/" className="nav-button">
-              Login
+            <Link to="/signin" className="nav-button">
+              Sign In
             </Link>
           </>
         )}
