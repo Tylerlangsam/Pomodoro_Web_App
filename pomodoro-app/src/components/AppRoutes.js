@@ -1,7 +1,7 @@
 import Pomodoro from "./Pomodoro";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
-import Stats from "./Stats";
+import Stats from "./Statistics";
 import React from "react";
 import { auth } from "../firebase";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";

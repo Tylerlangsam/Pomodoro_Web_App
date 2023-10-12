@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import { db, auth } from "../firebase";
-import { ref, get, child } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 function Stats() {
   const [totalBreakTime, setTotalBreakTime] = useState(0);
@@ -12,7 +12,6 @@ function Stats() {
     if (user) {
       const userUID = user.uid;
       const path = `users/${userUID}/studySessions`;
-      console.log("Path:", path)
       const userRef = ref(db, path);
 
       // Initialize total times
@@ -20,7 +19,7 @@ function Stats() {
       let studyTime = 0;
 
       // Fetch and calculate total times
-      get(child(userRef)).then((snapshot) => {
+      get(userRef).then((snapshot) => {
         if (snapshot.exists()) {
           snapshot.forEach((sessionSnapshot) => {
             const sessionData = sessionSnapshot.val();
@@ -40,7 +39,7 @@ function Stats() {
         }
       });
     } else {
-        console.log("User is not authenticated")
+      console.log("User is not authenticated");
     }
   }, []);
 
