@@ -29,25 +29,25 @@ function Pomodoro() {
 
   const [studySessionStartTime, setStudySessionStartTime] = useState(null);
 
-   const [user, setUser] = useState(null); // Initialize user state
+  const [user, setUser] = useState(null); // Initialize user state
 
-   // ...
+  // ...
 
-   useEffect(() => {
-     // Listen for changes in the user's authentication state
-     const unsubscribe = onAuthStateChanged(auth, (user) => {
-       if (user) {
-         // User is signed in, set the user object
-         setUser(user);
-       } else {
-         // User is signed out, reset the user object
-         setUser(null);
-       }
-     });
+  useEffect(() => {
+    // Listen for changes in the user's authentication state
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, set the user object
+        setUser(user);
+      } else {
+        // User is signed out, reset the user object
+        setUser(null);
+      }
+    });
 
-     // Cleanup the listener when the component unmounts
-     return () => unsubscribe();
-   }, []);
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const [userEmail, setUserEmail] = useState("");
   useEffect(() => {
@@ -87,7 +87,7 @@ function Pomodoro() {
       const endTime = Math.floor(new Date().getTime() / 1000); // Get the current timestamp in seconds
 
       // Calculate the duration of the study session
-      const durationInSeconds = Math.floor((endTime - studySessionStartTime) / 1000);
+      const durationInSeconds = endTime - studySessionStartTime;
 
       // Save the study session to the database
       const user = auth.currentUser;
@@ -155,7 +155,7 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <NavBar user={user}/>
+      <NavBar user={user} />
       {isAudioPlaying && <audio src={TimerStart} loop autoPlay />}
       {isResetAudioPlaying && (
         <audio
@@ -222,7 +222,8 @@ function Pomodoro() {
           <button className="control-button reset-button" onClick={resetTimer}>
             Reset
           </button>
-        </div><br></br>
+        </div>
+        <br></br>
         <div className="user-email">Signed in as: {userEmail}</div>
         <div className="bubbles">
           <div className="bubble"></div>
