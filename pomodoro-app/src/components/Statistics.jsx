@@ -3,6 +3,7 @@ import { db, auth } from "../firebase";
 import { ref, get } from "firebase/database";
 import NavBar from "./NavBar";
 import { onAuthStateChanged } from "firebase/auth";
+import "./Statistics.css";
 
 function Stats() {
   const [user, setUser] = useState(null); // Initialize user state
@@ -56,10 +57,10 @@ function Stats() {
     <div className="stats">
       <NavBar user={user} />
       <div className="stats-container">
-        <h2>Stats</h2>
         <div>
-          <p>Total Break Time: {totalBreakTime} seconds</p>
-          <p>Total Study Time: {totalStudyTime} seconds</p>
+          <h2 className="stats-title">Stats</h2>
+          <span>Total Break Time: {totalBreakTime} seconds</span><br></br>
+          <span>Total Study Time: {totalStudyTime} seconds</span>
         </div>
       </div>
     </div>
