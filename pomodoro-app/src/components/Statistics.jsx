@@ -4,6 +4,7 @@ import { ref, get } from "firebase/database";
 import NavBar from "./NavBar";
 import { onAuthStateChanged } from "firebase/auth";
 import "./Statistics.css";
+import Chart from "chart.js/auto";
 
 function Stats() {
   const [user, setUser] = useState(null); // Initialize user state
@@ -43,6 +44,23 @@ function Stats() {
             setTotalBreakTime(breakTime);
             setTotalStudyTime(studyTime);
           }
+          // Create a data array for pie chart
+          const data = {
+            labels: ["Study Time", "Break Time"],
+            datasets: [
+              {
+                data: [totalStudyTime, totalBreakTime],
+                backgroundColor: ["#36A2EB", "FFCE56"], //Colors for chart sections
+              },
+            ],
+          };
+
+          //Create the pie chart
+          const chartContainer = document.getElementById("myPieChart");
+          new Chart(chartContainer, {
+            type: "pie",
+            data: data,
+          });
         });
       } else {
         console.log("User is not authenticated");
@@ -51,17 +69,14 @@ function Stats() {
 
     // Cleanup the listener when the component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [totalBreakTime, totalStudyTime]);
 
   return (
     <div className="stats">
       <NavBar user={user} />
       <div className="stats-container">
-        <div>
-          <h2 className="stats-title">Stats</h2>
-          <span>Total Break Time: {totalBreakTime} seconds</span><br></br>
-          <span>Total Study Time: {totalStudyTime} seconds</span>
-        </div>
+        <h2 className="stats-title">Stats</h2>
+        <canvas id="myPieChart" width="400" height="400"></canvas>
       </div>
     </div>
   );
