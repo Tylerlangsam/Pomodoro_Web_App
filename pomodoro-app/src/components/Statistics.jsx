@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db, auth } from "../firebase";
 import { ref, get } from "firebase/database";
 import NavBar from "./NavBar";
@@ -10,6 +10,7 @@ function Stats() {
   const [user, setUser] = useState(null); // Initialize user state
   const [totalBreakTime, setTotalBreakTime] = useState(0);
   const [totalStudyTime, setTotalStudyTime] = useState(0);
+  const chartRef = useRef(); // Create a ref for the chart instance
 
   useEffect(() => {
     // Listen for changes in the user's authentication state
@@ -44,6 +45,11 @@ function Stats() {
             setTotalBreakTime(breakTime);
             setTotalStudyTime(studyTime);
           }
+          // Check if the chartRef has a current chart instance
+          if (chartRef.current) {
+            // If it exists, destroy the previous chart
+            chartRef.current.destroy();
+          }
           // Create a data array for pie chart
           const data = {
             labels: ["Study Time", "Break Time"],
@@ -57,10 +63,11 @@ function Stats() {
 
           //Create the pie chart
           const chartContainer = document.getElementById("myPieChart");
-          new Chart(chartContainer, {
+          const newChart = new Chart(chartContainer, {
             type: "pie",
             data: data,
           });
+          chartRef.current = newChart;
         });
       } else {
         console.log("User is not authenticated");
@@ -68,9 +75,14 @@ function Stats() {
     });
 
     // Cleanup the listener when the component unmounts
-    return () => unsubscribe();
+    return () => {
+      if (chartRef.current) {
+        // Destroy the chart when unmounting
+        chartRef.current.destroy();
+      }
+      unsubscribe();
+    };
   }, [totalBreakTime, totalStudyTime]);
-
   return (
     <div className="stats">
       <NavBar user={user} />
