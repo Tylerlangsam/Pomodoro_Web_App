@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase";
 import NavBar from "../NavBar";
-import './Auth.css'
+import './Auth.scss'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -55,7 +55,7 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="btn">Sign Up</button>
         </form>
         <p>
           Already have an account? <Link to="/">Log In</Link>

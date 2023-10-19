@@ -5,7 +5,7 @@ import NavBar from "../NavBar";
 import { Link, useNavigate } from "react-router-dom"; 
 import { db } from "../../firebase";
 import { ref, set } from 'firebase/database';
-import './Auth.css'
+import './Auth.scss'
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -54,7 +54,7 @@ const SignIn = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}></input>
-          <button type="submit">Log In</button>
+          <button type="submit" className="btn">Log In</button>
         </form>
         <p>
           Don't have an account? <Link to="/signup">Sign Up</Link>
