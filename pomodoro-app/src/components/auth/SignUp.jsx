@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase";
 import NavBar from "../NavBar";
+import './Auth.css'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -37,27 +38,29 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-in-container">
-    <NavBar></NavBar>
-      <form onSubmit={signUp}>
-        <h1>Create Account</h1>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Log In</Link>
-      </p>
+    <div>
+        <NavBar />
+      <div className="auth-container">
+        <form onSubmit={signUp}>
+          <h1>Create Account</h1>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>
+          Already have an account? <Link to="/">Log In</Link>
+        </p>
+      </div>
     </div>
   );
 };

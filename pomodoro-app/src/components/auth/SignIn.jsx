@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { Link, useNavigate } from "react-router-dom"; 
 import { db } from "../../firebase";
 import { ref, set } from 'firebase/database';
+import './Auth.css'
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -37,26 +38,28 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <div>
       <NavBar />
-      <form onSubmit={signIn}>
-        <h1>Log In to your Account</h1>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}></input>
+      <div className="auth-container">
+        <form onSubmit={signIn}>
+          <h1>Log In to your Account</h1>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}></input>
 
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}></input>
-        <button type="submit">Log In</button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}></input>
+          <button type="submit">Log In</button>
+        </form>
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
     </div>
   );
 };
