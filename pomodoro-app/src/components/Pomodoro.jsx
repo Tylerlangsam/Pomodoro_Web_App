@@ -210,7 +210,7 @@ function Pomodoro() {
           </div>
         </div>
         <div className="timer-controls">
-          <button className="control-button start-button" onClick={startTimer} disabled={isRunning}>
+          <button className="btn" onClick={startTimer} disabled={isRunning}>
             Start
           </button>
           <button
